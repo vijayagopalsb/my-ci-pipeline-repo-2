@@ -6,12 +6,6 @@ pipeline {
 
     stages {
 
-        stage("Clone") {
-            steps {
-                git 'https://github.com/vijayagopalsb/my-ci-pipeline-repo-2.git'
-            }
-        }
-
         stage('Setup Python') {
             steps {
                 sh 'python3 --version || python --version'
