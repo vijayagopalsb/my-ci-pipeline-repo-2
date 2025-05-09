@@ -1,22 +1,21 @@
 // Jenkinsfile (Declarative Pipeline)
 
 pipeline {
+
     agent any
 
-    tools {
-        python 'Python-3.12.5' // Make sure this is configured in Jenkins tools
-    }
-
     stages {
+
         stage("Clone") {
             steps {
                 git 'https://github.com/vijayagopalsb/my-ci-pipeline-repo-2.git'
             }
         }
 
-         stage('Install Dependencies') {
+        stage('Setup Python') {
             steps {
-                sh 'python -m venv venv'
+                sh 'python3 --version || python --version'
+                sh 'python3 -m venv venv || python -m venv venv'
                 sh '. venv/bin/activate && pip install -r requirements.txt'
             }
         }
